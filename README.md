@@ -1,225 +1,114 @@
-# 🧠 Mindful Companion
 
-Mindful Companion is an AI-powered mental health support platform that provides personalized emotional assistance through intelligent conversations, facial emotion recognition, mood tracking, and wellness journaling. The platform combines cloud-based AI services with local machine learning models to deliver responsive, privacy-aware, and accessible mental health support.
+# 🌿 Mindful Companion (MindfulChat)
+### *Empathetic AI for Emotional Well-being*
 
-> **Live Demo:** https://mindchat-zpnk.vercel.app
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
+[![React](https://img.shields.io/badge/React-18%2B-61DAFB)](https://reactjs.org/)
+[![AI-Powered](https://img.shields.io/badge/AI-Gemini%20%7C%20GPT--4o%20%7C%20DeepFace-orange)](https://deepmind.google/technologies/gemini/)
 
-> **Disclaimer:** Mindful Companion is designed to provide emotional support and wellness resources. It is **not** a substitute for professional medical or psychological care.
-
----
-
-## 🚀 Features
-
-- 🤖 AI-powered mental health conversations
-- 😊 Real-time facial emotion recognition
-- 📊 Daily mood tracking and analytics
-- 📖 Personal journal with secure entries
-- 🚨 Crisis detection with supportive guidance
-- 🌐 REST API integration for AI services
-- ☁️ Hybrid cloud and local AI architecture
-- 🔐 Secure user authentication and data management
-- 📱 Responsive and user-friendly interface
+Mindful Companion is a state-of-the-art mental health chatbot designed to bridge the gap between digital interaction and human empathy. By combining **Real-time Facial Emotion Recognition** with **Multi-Model Hybrid Intelligence**, it provides a safe, responsive, and emotionally aware space for users to navigate their mental well-being.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Key Highlights & Technical Innovation
 
-### Frontend
-- React.js
-- HTML5
-- CSS3
-- JavaScript
+### 1. 🎭 Emotional Intelligence via Computer Vision
+Unlike traditional chatbots that only read text, Mindful Companion **sees** how you feel.
+- **DeepFace Integration:** Analyzes user facial expressions (Happy, Sad, Anxious, Neutral) via webcam.
+- **Contextual Injection:** Facial emotions are fed directly into the LLM's prompt context, allowing the AI to adjust its tone dynamically (e.g., being more gentle if sadness is detected).
 
-### Backend
-- Flask
-- Python
+### 2. 🧠 Hybrid "Fail-Safe" AI Architecture
+We prioritize reliability for mental health support. The system uses a multi-tier intelligence strategy:
+- **Primary:** Cloud LLMs (Google Gemini 1.5 Flash / GPT-4o) via LangChain.
+- **Secondary:** Adaptive fallback to local Scikit-Learn ML classifiers if APIs are offline.
+- **Tertiary:** On-device Heuristic Engine powered by a curated mental health dataset (`MentalHealthChatbotDataset.json`).
 
-### AI & Machine Learning
-- OpenCV
-- TensorFlow
-- Scikit-learn
-- Facial Emotion Recognition Models
-- Natural Language Processing (NLP)
+### 3. 🛡️ Clinical Safety & Ethics
+- **Crisis Detection:** Hard-coded safety guardrails detect keywords related to self-harm or aggression and immediately redirect to professional help resources.
+- **Scope Guarding:** AI specifically refuses coding or technical tasks, maintaining its role as a dedicated wellness companion.
 
-### Database
-- MongoDB / SQLite *(depending on deployment)*
+### 4. 📊 Holistic Mental Health Toolkit
+Beyond chat, the platform provides a comprehensive wellness suite:
+- **Mood Tracker:** Interactive visualizations of emotional trends.
+- **Digital Journaling:** A private space for reflection and gratitude.
+- **Resource Hub:** Curated library of mental health articles and emergency contacts.
 
-### APIs & Tools
-- REST APIs
-- Git & GitHub
-- Vercel
+### 5. ⚡ Seamless Interaction UX
+- **Real-time Streaming:** Uses **Server-Sent Events (SSE)** to stream AI responses word-by-word, creating a natural, fluid conversation without loading lag.
+- **Responsive Design:** A premium interface built with **Tailwind CSS**, **Shadcn UI**, and animatons by **Framer Motion**.
+
+---
+
+## 🛠️ Technical Stack
+
+| Category | Technologies |
+| :--- | :--- |
+| **Frontend** | React (Vite), TypeScript, Tailwind CSS, Shadcn UI, Framer Motion, Lucide Icons |
+| **Backend** | Flask (Python), Gunicorn, Flask-CORS |
+| **AI/ML Logic** | LangChain, Google Generative AI, GPT-4o, Scikit-Learn, Joblib |
+| **Computer Vision** | DeepFace, OpenCV, TensorFlow |
+| **Data/Storage** | JSON-based Heuristic Dataset, Local Model Pickles |
+
+---
+
+## 🏗️ Architecture Overview
+
+```mermaid
+graph TD
+    A[User Interface - React] -->|Video Feed| B[DeepFace Engine]
+    A -->|Text Response| C[Flask Backend]
+    B -->|Emotion Label| C
+    C -->|Enhanced Context| D{Intelligence Orchestrator}
+    D -->|Tier 1| E[Google Gemini / GPT-4o]
+    D -->|Tier 2| F[Scikit-Learn ML Model]
+    D -->|Tier 3| G[Heuristic Dataset Engine]
+    E & F & G -->|Streaming Response| H[SSE Logic]
+    H -->|Fluid Text Output| A
+```
 
 ---
 
 ## 📂 Project Structure
 
-```
-Mindful-Companion/
-│
-├── frontend/               # React Application
-├── backend/                # Flask Backend
-├── models/                 # AI/ML Models
-├── api/                    # REST API Endpoints
-├── emotion_detection/      # Facial Emotion Recognition
-├── journal/                # Journaling Module
-├── mood_tracker/           # Mood Tracking
-├── crisis_detection/       # Crisis Detection Logic
-├── static/
-├── templates/
-├── requirements.txt
-└── README.md
+```text
+mindful-companion/
+├── backend/                  # Flask API & AI Logic
+│   ├── app.py                # Main backend controller
+│   ├── mental_health_model.pkl # Trained ML classifier
+│   └── MentalHealthChatbotDataset.json # Heuristic lookup
+├── frontend/                 # React Dashboard
+│   ├── src/components/       # UI Components (FaceScanner, Chat)
+│   ├── src/pages/            # View logic
+│   └── tailwind.config.js    # Styling configuration
+└── README.md                 # Presentation Documentation
 ```
 
 ---
 
-## ✨ Key Functionalities
+## 🏁 Getting Started
 
-### AI Mental Health Assistant
-- Provides empathetic AI-driven conversations.
-- Offers emotional support and wellness guidance.
+### Backend Setup
+1. `cd backend`
+2. `python -m venv .venv` && `source .venv/bin/activate`
+3. `pip install -r requirements.txt`
+4. Create `.env` with `GEMINI_API_KEY` and `GITHUB_PAT`.
+5. `flask run`
 
-### Facial Emotion Recognition
-- Detects facial expressions in real time.
-- Uses AI models to identify user emotions.
-
-### Mood Tracking
-- Records daily emotional states.
-- Visualizes mood trends over time.
-
-### Digital Journal
-- Securely stores personal journal entries.
-- Encourages self-reflection and emotional awareness.
-
-### Crisis Detection
-- Identifies potentially concerning user inputs.
-- Provides supportive recommendations and emergency guidance when necessary.
-
-### Hybrid AI Architecture
-- Combines cloud-based AI with local machine learning models.
-- Balances performance, privacy, and reliability.
+### Frontend Setup
+1. `cd frontend`
+2. `npm install`
+3. `npm run dev`
 
 ---
 
-## ⚙️ Installation
-
-### Clone the repository
-
-```bash
-git clone https://github.com/your-username/Mindful-Companion.git
-```
-
-Navigate to the project directory
-
-```bash
-cd Mindful-Companion
-```
-
-### Install Frontend Dependencies
-
-```bash
-cd frontend
-npm install
-```
-
-### Install Backend Dependencies
-
-```bash
-cd ../backend
-pip install -r requirements.txt
-```
-
-### Configure Environment Variables
-
-Create a `.env` file in the backend directory.
-
-```env
-API_KEY=your_api_key
-SECRET_KEY=your_secret_key
-DATABASE_URL=your_database_url
-```
-
-### Run the Backend
-
-```bash
-python app.py
-```
-
-### Run the Frontend
-
-```bash
-cd ../frontend
-npm start
-```
-
-The application will run at:
-
-```
-Frontend: http://localhost:3000
-Backend:  http://localhost:5000
-```
+## 🔮 Future Roadmap
+- **Voice Synthesis:** Integrating real-time TTS for vocal empathy.
+- **Progress Tracking:** Visualization of user mood trends over time using Recharts.
+- **Wearable Integration:** Syncing with heart-rate data for physiological stress detection.
 
 ---
 
-## 🌐 Live Demo
-
-**https://mindchat-zpnk.vercel.app**
-
----
-
-## 📊 AI Workflow
-
-1. User logs in
-2. AI chatbot receives user input
-3. Facial emotion recognition analyzes expressions (optional)
-4. Mood and journal entries are securely stored
-5. Crisis detection evaluates conversations for risk indicators
-6. AI provides personalized emotional support and wellness recommendations
-
----
-
-## 🔒 Security Features
-
-- Secure user authentication
-- Protected REST API endpoints
-- Encrypted environment variables
-- Privacy-focused AI architecture
-- Secure storage of user mood and journal data
-
----
-
-## 📸 Screenshots
-
-Include screenshots of:
-
-- Home Page
-- AI Chat Interface
-- Emotion Detection
-- Mood Tracking Dashboard
-- Journal Page
-- Crisis Detection Alerts
-
----
-
-## 🎯 Future Enhancements
-
-- Voice-based AI conversations
-- Multilingual support
-- Wearable device integration
-- Personalized wellness recommendations
-- Therapist appointment integration
-- Advanced emotion analytics
-- Mobile application (Android & iOS)
-
----
-
-## 👨‍💻 Author
-
-**Mallela Lokesh Reddy**
-
-B.Tech – Computer Science and Engineering
-
----
-
-## 📄 License
-
-This project is intended for educational, research, and demonstration purposes.
+### 📝 Presentation Note
+This project demonstrates the synergy between **Vision AI** and **Generative AI** to solve a critical human problem: accessibility to empathetic support. It is built with a focus on **privacy, availability, and human-centric design.**
+#
